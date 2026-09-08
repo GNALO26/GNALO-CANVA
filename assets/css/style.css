@@ -12,8 +12,8 @@
 body {
     font-family: var(--font-body);
     color: #333;
-    padding-top: 70px;
-    overflow: hidden; /* Empêche le scroll pendant l'intro */
+    padding-top: 70px; /* pour compenser la navbar fixe */
+    overflow: hidden; /* empêche le scroll pendant l'intro */
     transition: overflow 0.5s ease;
 }
 
@@ -40,7 +40,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #intro-svg {
-    max-width: 90%;
+    max-width: 95%;
+    height: auto;
 }
 
 .intro-text {
@@ -51,13 +52,11 @@ h1, h2, h3, h4, h5, h6 {
     stroke-width: 2;
 }
 
-/* Chaque tspan (lettre) aura sa propre animation avec délai */
 .intro-text tspan {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
 }
 
-/* Animation de tracé pour chaque lettre */
 @keyframes drawLetter {
     to {
         stroke-dashoffset: 0;
@@ -65,7 +64,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Classe appliquée dynamiquement aux tspans pour lancer l'animation */
 .animate-letter {
     animation: drawLetter 1.2s ease forwards;
 }
@@ -142,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    flex-shrink: 0;
 }
 
 /* ========== Cards ========== */
@@ -215,13 +214,31 @@ h1, h2, h3, h4, h5, h6 {
     background: #e9ecef;
 }
 
-/* ========== Responsive ========== */
+/* ========== Responsive amélioré ========== */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: rgba(26, 26, 46, 0.98);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+    }
+}
+
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* navbar plus petite */
+    }
     .hero {
         min-height: 70vh;
     }
     .display-3 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+    .lead {
+        font-size: 1rem;
     }
     .step-circle {
         width: 50px;
@@ -229,6 +246,29 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.2rem;
     }
     .intro-text {
-        font-size: 40px;
+        font-size: 40px; /* police adaptée aux petits écrans */
+    }
+    .hero .btn-lg {
+        width: 100%; /* boutons pleine largeur sur mobile */
+        margin-bottom: 10px;
+    }
+    .hero .d-flex.flex-column.flex-sm-row {
+        gap: 10px;
+    }
+    .card-body {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 30px;
+    }
+    .display-3 {
+        font-size: 1.8rem;
+    }
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
     }
 }
