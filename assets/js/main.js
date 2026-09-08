@@ -1,11 +1,13 @@
-// Initialisation de AOS
-AOS.init({
-    duration: 800,
-    once: true,
-    offset: 100
+// ========== Initialisation de AOS ==========
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
 });
 
-// Optionnel : changer le fond de la navbar au scroll
+// ========== Changement de fond de la navbar au scroll ==========
 window.addEventListener('scroll', function() {
     const nav = document.getElementById('mainNav');
     if (window.scrollY > 50) {
@@ -23,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const textElement = document.querySelector('.intro-text');
     const message = "GNALO CANVA PRO";
     const letters = message.split('');
+
+    // On vide le texte existant pour le reconstruire
+    textElement.innerHTML = '';
 
     letters.forEach((letter) => {
         const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
@@ -56,13 +61,36 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeOverlay() {
         overlay.classList.add('hidden');
         document.body.style.overflow = 'auto';
-        AOS.refresh();
+        // Forcer un rafraîchissement de AOS après la fermeture
+        setTimeout(() => {
+            AOS.refresh();
+        }, 100);
     }
 });
 
-// Copier les numéros (bouton optionnel)
+// ========== Fonction utilitaire pour copier un texte ==========
 function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Numéro copié !');
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
         alert('Numéro copié !');
-    });
+    } catch (err) {
+        alert('Impossible de copier le numéro.');
+    }
+    document.body.removeChild(textarea);
 }
