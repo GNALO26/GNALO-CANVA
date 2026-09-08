@@ -18,39 +18,33 @@ window.addEventListener('scroll', function() {
 // ========== Animation d'intro : dessin lettre par lettre ==========
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('intro-overlay');
-    // Si l'overlay n'existe pas (sur tarifs ou instructions), ne rien faire
     if (!overlay) return;
 
     const textElement = document.querySelector('.intro-text');
     const message = "GNALO CANVA PRO";
     const letters = message.split('');
 
-    // Ajoute chaque lettre comme un tspan
     letters.forEach((letter) => {
         const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-        tspan.textContent = letter === ' ' ? '\u00A0' : letter; // espace insécable
+        tspan.textContent = letter === ' ' ? '\u00A0' : letter;
         textElement.appendChild(tspan);
     });
 
-    // Récupère tous les tspans
     const tspans = document.querySelectorAll('.intro-text tspan');
     const totalLetters = tspans.length;
 
-    // Applique l'animation à chaque lettre avec un délai progressif
     tspans.forEach((tspan, index) => {
         if (tspan.textContent.trim() !== '') {
-            const delay = index * 0.4; // délai en secondes entre chaque lettre
+            const delay = index * 0.4;
             tspan.style.animation = `drawLetter 1.2s ease ${delay}s forwards`;
         }
     });
 
-    // Calcule la durée totale de l'animation
     const lastLetterIndex = totalLetters - 1;
     const lastDelay = (lastLetterIndex * 0.4);
     const animationDuration = 1.2;
-    const totalTime = (lastDelay + animationDuration + 0.5) * 1000; // +0.5s de marge
+    const totalTime = (lastDelay + animationDuration + 0.5) * 1000;
 
-    // Après l'animation, masque l'overlay et réactive le scroll
     setTimeout(() => {
         overlay.classList.add('hidden');
         document.body.style.overflow = 'auto';
