@@ -17,7 +17,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// ========== Animation d'intro : dessin lettre par lettre ==========
+// ========== Animation d'introduction ==========
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('intro-overlay');
     if (!overlay) return;
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const message = "GNALO CANVA PRO";
     const letters = message.split('');
 
-    // On vide le texte existant pour le reconstruire
     textElement.innerHTML = '';
 
     letters.forEach((letter) => {
@@ -45,30 +44,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const lastLetterIndex = totalLetters - 1;
-    const lastDelay = (lastLetterIndex * 0.4);
-    const animationDuration = 1.2;
-    const totalTime = (lastDelay + animationDuration + 0.5) * 1000;
+    const lastDelay = (totalLetters - 1) * 0.4;
+    const totalTime = (lastDelay + 1.2 + 0.5) * 1000;
 
-    // Fermer l'overlay après l'animation
     setTimeout(() => {
         closeOverlay();
     }, totalTime);
 
-    // Fallback de sécurité : fermer après 8 secondes
     setTimeout(closeOverlay, 8000);
 
     function closeOverlay() {
         overlay.classList.add('hidden');
         document.body.style.overflow = 'auto';
-        // Forcer un rafraîchissement de AOS après la fermeture
         setTimeout(() => {
             AOS.refresh();
         }, 100);
     }
 });
 
-// ========== Fonction utilitaire pour copier un texte ==========
+// ========== Copie de numéro (utilitaire) ==========
 function copyText(text) {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
