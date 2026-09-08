@@ -1,0 +1,234 @@
+/* ========== Variables globales ========== */
+:root {
+    --primary: #6a11cb;
+    --secondary: #2575fc;
+    --accent: #ffc107;
+    --dark: #1a1a2e;
+    --gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: #333;
+    padding-top: 70px;
+    overflow: hidden; /* Empêche le scroll pendant l'intro */
+    transition: overflow 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+/* ========== Overlay d'introduction ========== */
+#intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#intro-svg {
+    max-width: 90%;
+}
+
+.intro-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+/* Chaque tspan (lettre) aura sa propre animation avec délai */
+.intro-text tspan {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+/* Animation de tracé pour chaque lettre */
+@keyframes drawLetter {
+    to {
+        stroke-dashoffset: 0;
+        fill: #ffffff;
+    }
+}
+
+/* Classe appliquée dynamiquement aux tspans pour lancer l'animation */
+.animate-letter {
+    animation: drawLetter 1.2s ease forwards;
+}
+
+/* ========== Navbar ========== */
+#mainNav {
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+}
+
+#mainNav .navbar-brand,
+#mainNav .nav-link {
+    color: #fff !important;
+}
+
+#mainNav .nav-link.active {
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+
+#mainNav .btn-warning {
+    background: var(--accent);
+    border: none;
+    font-weight: 600;
+}
+
+/* ========== Hero avec vidéo ========== */
+.hero {
+    position: relative;
+    min-height: 80vh;
+    overflow: hidden;
+    background: url('../img/hero-bg.jpg') no-repeat center center/cover;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 3;
+}
+
+/* ========== Step circles ========== */
+.step-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ========== Cards ========== */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.card-header.bg-primary {
+    background: var(--gradient) !important;
+}
+
+/* ========== Boutons ========== */
+.btn-primary {
+    background: var(--gradient);
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.btn-warning {
+    background: var(--accent);
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background: #ffca2c;
+    color: #000;
+    transform: scale(1.02);
+}
+
+.btn-outline-light {
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.btn-success {
+    background: #25d366;
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+}
+
+/* ========== Listes ========== */
+.list-group-numbered .list-group-item {
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px !important;
+    background: #f8f9fa;
+    transition: background 0.3s;
+}
+
+.list-group-numbered .list-group-item:hover {
+    background: #e9ecef;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+    }
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    .step-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    .intro-text {
+        font-size: 40px;
+    }
+}
