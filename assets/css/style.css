@@ -12,7 +12,7 @@
 body {
     font-family: var(--font-body);
     color: #333;
-    padding-top: 70px; /* pour compenser la navbar fixe */
+    padding-top: 70px; /* sera ajusté dynamiquement par JS */
     overflow: hidden; /* empêche le scroll pendant l'intro */
     transition: overflow 0.5s ease;
 }
@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ========== Hero avec vidéo ========== */
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: calc(100vh - 70px); /* hauteur ajustée automatiquement par JS */
     overflow: hidden;
     background: url('../img/hero-bg.jpg') no-repeat center center/cover;
 }
@@ -229,10 +229,10 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 60px; /* navbar plus petite */
+        padding-top: 60px; /* sera recalculé par JS */
     }
     .hero {
-        min-height: 70vh;
+        min-height: calc(100vh - 60px); /* sera recalculé */
     }
     .display-3 {
         font-size: 2.2rem;
@@ -246,10 +246,10 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.2rem;
     }
     .intro-text {
-        font-size: 40px; /* police adaptée aux petits écrans */
+        font-size: 40px;
     }
     .hero .btn-lg {
-        width: 100%; /* boutons pleine largeur sur mobile */
+        width: 100%;
         margin-bottom: 10px;
     }
     .hero .d-flex.flex-column.flex-sm-row {
