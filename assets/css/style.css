@@ -7,13 +7,14 @@
     --gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --nav-height: 70px; /* hauteur fixe de la navbar */
 }
 
 body {
     font-family: var(--font-body);
     color: #333;
-    padding-top: 70px; /* sera ajusté dynamiquement par JS */
-    overflow: hidden; /* empêche le scroll pendant l'intro */
+    padding-top: var(--nav-height); /* padding fixe */
+    overflow: hidden;
     transition: overflow 0.5s ease;
 }
 
@@ -68,11 +69,21 @@ h1, h2, h3, h4, h5, h6 {
     animation: drawLetter 1.2s ease forwards;
 }
 
-/* ========== Navbar ========== */
+/* ========== Navbar (hauteur fixe) ========== */
 #mainNav {
     background: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(10px);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
     transition: background 0.3s ease;
+}
+
+#mainNav .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #mainNav .navbar-brand,
@@ -91,10 +102,51 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
-/* ========== Hero avec vidéo ========== */
+/* ========== Menu mobile en overlay plein écran ========== */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background: rgba(26, 26, 46, 0.98);
+        padding: 1rem;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+    }
+
+    .navbar-collapse.show {
+        transform: translateX(0);
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1.2rem;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-nav .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ========== Hero (hauteur = 100vh - navbar) ========== */
 .hero {
     position: relative;
-    min-height: calc(100vh - 70px); /* hauteur ajustée automatiquement par JS */
+    min-height: calc(100vh - var(--nav-height));
     overflow: hidden;
     background: url('../img/hero-bg.jpg') no-repeat center center/cover;
 }
@@ -214,26 +266,8 @@ h1, h2, h3, h4, h5, h6 {
     background: #e9ecef;
 }
 
-/* ========== Responsive amélioré ========== */
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background: rgba(26, 26, 46, 0.98);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-top: 0.5rem;
-    }
-    .navbar-nav .nav-item {
-        margin-bottom: 0.5rem;
-    }
-}
-
+/* ========== Responsive (ajustements complémentaires) ========== */
 @media (max-width: 768px) {
-    body {
-        padding-top: 60px; /* sera recalculé par JS */
-    }
-    .hero {
-        min-height: calc(100vh - 60px); /* sera recalculé */
-    }
     .display-3 {
         font-size: 2.2rem;
     }
