@@ -29,7 +29,7 @@
 
     <!-- Overlay d'introduction avec animation de dessin -->
     <div id="intro-overlay">
-        <svg id="intro-svg" viewBox="0 0 800 200" width="80%" height="auto">
+        <svg id="intro-svg" viewBox="0 0 800 200" width="90%" height="auto" preserveAspectRatio="xMidYMid meet">
             <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="intro-text">
                 <!-- Les lettres seront injectées ici par JavaScript -->
             </text>
@@ -47,12 +47,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="tarifs.html">Tarifs</a></li>
                     <li class="nav-item"><a class="nav-link" href="instructions.html">Instructions</a></li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-warning btn-sm px-3 py-2 mt-2 mt-lg-0" href="https://wa.me/229153914648?text=Bonjour%2C%20je%20souhaite%20m%27abonner%20%C3%A0%20Canva%20Pro." target="_blank">
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-warning btn-sm px-3 py-2" href="https://wa.me/229153914648?text=Bonjour%2C%20je%20souhaite%20m%27abonner%20%C3%A0%20Canva%20Pro." target="_blank">
                             <i class="fab fa-whatsapp"></i> Commander
                         </a>
                     </li>
@@ -63,21 +63,19 @@
 
     <!-- Hero Section avec vidéo en fond -->
     <header class="hero d-flex align-items-center text-center text-white">
-        <!-- Vidéo en fond -->
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-bg.jpg">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-bg.jpg">
             <source src="assets/video/hero-bg.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
-        <!-- Overlay pour lisibilité -->
         <div class="hero-overlay"></div>
         <div class="container position-relative" style="z-index: 2;">
             <h1 class="display-3 fw-bold mb-3" data-aos="fade-up">Canva Pro à prix imbattable</h1>
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Activation rapide, support WhatsApp dédié, paiement Mobile Money sécurisé.</p>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <a href="tarifs.html" class="btn btn-warning btn-lg me-2 mb-2">
+            <div data-aos="fade-up" data-aos-delay="200" class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+                <a href="tarifs.html" class="btn btn-warning btn-lg">
                     <i class="fas fa-tag"></i> Voir les offres
                 </a>
-                <a href="instructions.html" class="btn btn-outline-light btn-lg mb-2">
+                <a href="instructions.html" class="btn btn-outline-light btn-lg">
                     <i class="fas fa-info-circle"></i> Comment ça marche
                 </a>
             </div>
@@ -87,28 +85,28 @@
     <!-- Avantages -->
     <section class="py-5 bg-light">
         <div class="container">
-            <div class="row text-center g-4">
-                <div class="col-md-4" data-aos="zoom-in">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                        <div class="card-body">
                             <i class="fas fa-bolt fa-3x text-primary mb-3"></i>
                             <h3 class="h5 fw-bold">Activation rapide</h3>
                             <p class="text-muted mb-0">Votre compte est activé en moins de 24 heures après envoi de la capture.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                        <div class="card-body">
                             <i class="fas fa-headset fa-3x text-primary mb-3"></i>
                             <h3 class="h5 fw-bold">Support WhatsApp</h3>
                             <p class="text-muted mb-0">Une question ? Écrivez-nous sur WhatsApp, réponse rapide et humaine.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                        <div class="card-body">
                             <i class="fas fa-hand-holding-usd fa-3x text-primary mb-3"></i>
                             <h3 class="h5 fw-bold">Prix réduits</h3>
                             <p class="text-muted mb-0">1 mois à 2 500 FCFA, 3 mois à 7 000 FCFA. Économisez jusqu'à 500 F.</p>
@@ -123,18 +121,18 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Comment ça marche ?</h2>
-            <div class="row text-center g-4">
-                <div class="col-md-4" data-aos="fade-right">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4 text-center" data-aos="fade-right">
                     <div class="step-circle mx-auto mb-3">1</div>
                     <h3 class="h5 fw-bold">Choisissez une offre</h3>
                     <p class="text-muted">1 mois ou 3 mois, selon vos besoins.</p>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-6 col-lg-4 text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="step-circle mx-auto mb-3">2</div>
                     <h3 class="h5 fw-bold">Effectuez le dépôt</h3>
-                    <p class="text-muted">Mobile Money sur l'un des numéros indiqués.</p>
+                    <p class="text-muted">Mobile Money sur le numéro indiqué.</p>
                 </div>
-                <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
+                <div class="col-md-6 col-lg-4 text-center" data-aos="fade-left" data-aos-delay="200">
                     <div class="step-circle mx-auto mb-3">3</div>
                     <h3 class="h5 fw-bold">Envoyez la preuve</h3>
                     <p class="text-muted">Capture d'écran + email sur WhatsApp, activation sous 24h.</p>
